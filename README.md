@@ -5,4 +5,4 @@ Encryptcord allows you to securely communicate with other people using end
 
 Keys are 4096bit RSA SHA256
 
-This is an unifficial [Vencord](https://vencord.dev) plugin
+This is an unofficial [Vencord](https://vencord.dev) plugin
