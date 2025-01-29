@@ -137,7 +137,7 @@ export default definePlugin({
         {
             find: "INTERACTION_APPLICATION_COMMAND_INVALID_VERSION",
             replacement: {
-                match: /await\s.{1,2}\..{1,2}\.post\(\{url:.{1,2}\.ANM\.INTERACTIONS,body:(.),/g,
+                match: /await \i\.\i\.post\(\{url:\i\.ANM\.INTERACTIONS,body:\i,/g,
                 replace: "await $self.interactionHandler($1);$&"
             }
         }
