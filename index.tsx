@@ -19,10 +19,11 @@ import {
 import { Devs } from "@utils/constants";
 import { sleep } from "@utils/misc";
 import definePlugin from "@utils/types";
+import { Message } from "@vencord/discord-types";
 import {
+    ChannelActionCreators,
     FluxDispatcher,
     MessageActions,
-    PrivateChannelsStore,
     RestAPI,
     SnowflakeUtils,
     useEffect,
@@ -30,7 +31,6 @@ import {
     UserUtils,
     useState,
 } from "@webpack/common";
-import { Message } from "discord-types/general";
 const CloudUpload = findLazy(m => m.prototype?.trackUploadFinished);
 
 import { getCurrentChannel } from "@utils/discord";
@@ -289,7 +289,7 @@ export default definePlugin({
                 return;
             }
             const dmChannelId =
-                await PrivateChannelsStore.getOrEnsurePrivateChannel(
+                await ChannelActionCreators.getOrEnsurePrivateChannel(
                     message.author.id
                 );
             if (channelId !== dmChannelId) return;
@@ -381,7 +381,7 @@ async function sendTempMessage(
 ) {
     if (recipientId === UserStore.getCurrentUser().id) return;
     const channelId = dm
-        ? await PrivateChannelsStore.getOrEnsurePrivateChannel(recipientId)
+        ? await ChannelActionCreators.getOrEnsurePrivateChannel(recipientId)
         : recipientId;
     if (attachment && attachment !== "") {
         const upload = await new CloudUpload(
